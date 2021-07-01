@@ -1,6 +1,17 @@
 import React from "react";
 
-function Appliances() {
+type Props = {
+  data: {
+    state: string,
+    nick_name: string,
+    type: string,
+    model: string,
+    manufacture: string,
+    country: string,
+  }[];
+}
+
+function Appliances(props: Props) {
     return (
         <table>
         <thead>
@@ -14,30 +25,20 @@ function Appliances() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>t</td>
-            <td>テレビ</td>
-            <td>TV</td>
-            <td>Sharp</td>
-            <td>sharp</td>
-            <td>JA</td>
-          </tr>
-          <tr>
-            <td>t</td>
-            <td>テレビ</td>
-            <td>TV</td>
-            <td>Sharp</td>
-            <td>sharp</td>
-            <td>JA</td>
-          </tr>
-          <tr>
-            <td>t</td>
-            <td>テレビ</td>
-            <td>TV</td>
-            <td>Sharp</td>
-            <td>sharp</td>
-            <td>JA</td>
-          </tr>
+          {
+            props.data.map((data) => {
+              return (
+                <tr>
+                  <td>{data.state}</td>
+                  <td>{data.nick_name}</td>
+                  <td>{data.type}</td>
+                  <td>{data.model}</td>
+                  <td>{data.manufacture}</td>
+                  <td>{data.country}</td>
+                </tr>
+                )
+            })
+          }
         </tbody>
       </table>
     );

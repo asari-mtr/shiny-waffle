@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from "react";
 
-function NamePlate() {
-    const [state] = useState({
-        id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        name: "sample remo"
-    })
+type Props = {
+    data: {
+        uuid: string,
+        name: string
+    }
+}
+
+function NamePlate(props: Props) {
     return (
         <React.Fragment>
-            <label>ID:</label>{state.id}
-            <label>Name:</label>{state.name}
+            <label>ID:</label>{props.data.uuid}
+            <label>Name:</label>{props.data.name}
         </React.Fragment>
     );
 };

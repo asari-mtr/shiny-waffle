@@ -1,6 +1,15 @@
 import React from 'react';
 
-function Devices() {
+type Props = {
+  data: {
+    name: string,
+    mac: string,
+    serial: string,
+    firmware: string,
+    create: Date
+  }[];
+}
+function Devices(props: Props) {
     return(
         <table>
         <thead>
@@ -13,41 +22,19 @@ function Devices() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Remo mini</td>
-            <td>cc-12-2a-46-0c-39</td>
-            <td>00000000000001</td>
-            <td>202.200000001</td>
-            <td>2021/06/29</td>
-          </tr>
-          <tr>
-            <td>Remo mini</td>
-            <td>cc-12-2a-46-0c-39</td>
-            <td>00000000000001</td>
-            <td>202.200000001</td>
-            <td>2021/06/29</td>
-          </tr>
-          <tr>
-            <td>Remo mini</td>
-            <td>cc-12-2a-46-0c-39</td>
-            <td>00000000000001</td>
-            <td>202.200000001</td>
-            <td>2021/06/29</td>
-          </tr>
-          <tr>
-            <td>Remo mini</td>
-            <td>cc-12-2a-46-0c-39</td>
-            <td>00000000000001</td>
-            <td>202.200000001</td>
-            <td>2021/06/29</td>
-          </tr>
-          <tr>
-            <td>Remo mini</td>
-            <td>cc-12-2a-46-0c-39</td>
-            <td>00000000000001</td>
-            <td>202.200000001</td>
-            <td>2021/06/29</td>
-          </tr>
+          {
+            props.data.map((data) => {
+              return (
+                <tr>
+                  <td>{data.name}</td>
+                  <td>{data.mac}</td>
+                  <td>{data.serial}</td>
+                  <td>{data.firmware}</td>
+                  <td>{data.create.toISOString()}</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     );

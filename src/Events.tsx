@@ -1,6 +1,14 @@
 import React from 'react';
 
-function Events() {
+type Props = {
+  data: {
+    type: string,
+    value: string,
+    created: Date
+  }[];
+}
+
+function Events(props: Props) {
     return (
         <table>
         <thead>
@@ -11,36 +19,17 @@ function Events() {
           </tr>
         </thead>
         <tbody>
-         <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>25.7</td>
-            <td>2021/06/26 20:36</td>
-          </tr>
+          {
+            props.data.map((data) => {
+              return (
+                <tr>
+                  <td>{data.type}</td>
+                  <td>{data.value}</td>
+                  <td>{data.created.toISOString()}</td>
+                </tr>
+              )
+              })
+          }
         </tbody>
       </table>
     );
