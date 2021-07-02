@@ -26,9 +26,9 @@ function Appliances(props: Props) {
         </thead>
         <tbody>
           {
-            props.data.map((data) => {
+            props.data.map((data, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{data.state}</td>
                   <td>{data.nick_name}</td>
                   <td>{data.type}</td>

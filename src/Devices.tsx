@@ -23,9 +23,9 @@ function Devices(props: Props) {
         </thead>
         <tbody>
           {
-            props.data.map((data) => {
+            props.data.map((data, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{data.name}</td>
                   <td>{data.mac}</td>
                   <td>{data.serial}</td>

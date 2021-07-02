@@ -20,9 +20,9 @@ function Events(props: Props) {
         </thead>
         <tbody>
           {
-            props.data.map((data) => {
+            props.data.map((data, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{data.type}</td>
                   <td>{data.value}</td>
                   <td>{data.created.toISOString()}</td>
