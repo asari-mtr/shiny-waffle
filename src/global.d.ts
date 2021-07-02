@@ -1,5 +1,5 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    readonly NATURE_REMO_CLOUD_API_TOKEN: string;
+    readonly REACT_APP_NATURE_REMO_CLOUD_API_TOKEN: string;
   }
 }

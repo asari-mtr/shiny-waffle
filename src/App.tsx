@@ -66,8 +66,7 @@ function App() {
   const [devices, setDevices] = useState<Array<IDeviceWithEvents>>([]);
 
   useEffect(() => {
-    // FIXME: Does not work
-    const client = new NatureRemo.Cloud(process.env.NATURE_REMO_CLOUD_API_TOKEN);
+    const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
     (async () => {
     client.getDevices().then((devices) => {
       setDevices(devices);
