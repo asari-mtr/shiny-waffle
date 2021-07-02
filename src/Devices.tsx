@@ -22,10 +22,10 @@ function Devices(props: Props) {
               return (
                 <tr key={index}>
                   <td>{data.name}</td>
-                  {/* <td>{data.mac_address}</td>
-                  <td>{data.serial_number}</td> */}
+                  <td>{data.mac_address}</td>
+                  <td>{data.serial_number}</td>
                   <td>{data.firmware_version}</td>
-                  {/* <td>{data.created_at.toISOString()}</td> */}
+                  <td>{data.created_at.toString()}</td>
                 </tr>
               )
             })

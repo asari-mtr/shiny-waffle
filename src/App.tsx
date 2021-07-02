@@ -7,6 +7,13 @@ import Events from './Events';
 import * as NatureRemo from 'nature-remo';
 import { IDeviceWithEvents } from 'nature-remo';
 
+declare module "nature-remo" {
+  interface IDevice {
+    mac_address: string
+    serial_number: string
+  }
+}
+
 const namePlateData = {
   uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   name: "sample remo"
