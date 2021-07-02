@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import NamePlate from './NamePlate';
 import Devices from './Devices';
 import Appliances from './Appliances';
 import Events from './Events';
+import * as NatureRemo from 'nature-remo';
+import { IDeviceWithEvents } from 'nature-remo';
 
 const namePlateData = {
   uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -37,30 +39,6 @@ const appliance_list = [
   }
 ];
 
-const device_list = [
-  {
-    name: "Remo mini",
-    mac: "cc-12-2a-46-0c-39",
-    serial: "00000000000001",
-    firmware: "202.200000001",
-    create: new Date()
-  },
-  {
-    name: "Remo mini",
-    mac: "cc-12-2a-46-0c-39",
-    serial: "00000000000001",
-    firmware: "202.200000001",
-    create: new Date()
-  },
-  {
-    name: "Remo mini",
-    mac: "cc-12-2a-46-0c-39",
-    serial: "00000000000001",
-    firmware: "202.200000001",
-    create: new Date()
-  },
-]
-
 const event_list = [
   {
     type: "te",
@@ -85,10 +63,22 @@ const event_list = [
 ]
 
 function App() {
+  const [devices, setDevices] = useState<Array<IDeviceWithEvents>>([]);
+
+  useEffect(() => {
+    // FIXME: Does not work
+    const client = new NatureRemo.Cloud(process.env.NATURE_REMO_CLOUD_API_TOKEN);
+    (async () => {
+    client.getDevices().then((devices) => {
+      setDevices(devices);
+    })
+    })();
+  }, [])
+
   return (
     <div className="App">
       <NamePlate data={namePlateData}/>
-      <Devices data={device_list}/>
+      <Devices data={devices}/>
       <Appliances data={appliance_list}/>
       <Events data={event_list}/>
     </div>
