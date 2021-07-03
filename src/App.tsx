@@ -40,39 +40,18 @@ const namePlateData = {
   name: "sample remo"
 }
 
-const event_list = [
-  {
-    type: "te",
-    value: "25.7",
-    created: new Date()
-  },
-  {
-    type: "te",
-    value: "25.7",
-    created: new Date()
-  },
-  {
-    type: "te",
-    value: "25.7",
-    created: new Date()
-  },
-  {
-    type: "te",
-    value: "25.7",
-    created: new Date()
-  },
-]
-
 function App() {
   const [devices, setDevices]       = useState<Array<IDeviceWithEvents>>([]);
   const [appliances, setAppliances] = useState<Array<IAppliance>>([]);
   const [smartMeters, setSmartMeters] = useState<Array<IAppliance>>([]);
+  const [events, setEvents] = useState<Array<IDeviceWithEvents>>([]);
 
   useEffect(() => {
     const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
     (async () => {
     client.getDevices().then((d) => {
       setDevices(d);
+      setEvents(d);
     })
     })();
   }, [])
@@ -94,7 +73,7 @@ function App() {
       <Devices data={devices}/>
       <Appliances data={appliances}/>
       <SmartMeters data={smartMeters}/>
-      <Events data={event_list}/>
+      <Events data={events}/>
     </div>
   );
 }
