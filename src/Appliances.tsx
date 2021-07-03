@@ -1,14 +1,8 @@
 import React from "react";
+import { IAppliance } from 'nature-remo'
 
 type Props = {
-  data: {
-    state: string,
-    nick_name: string,
-    type: string,
-    model: string,
-    manufacture: string,
-    country: string,
-  }[];
+  data: Array<IAppliance>
 }
 
 function Appliances(props: Props) {
@@ -29,12 +23,12 @@ function Appliances(props: Props) {
             props.data.map((data, index) => {
               return (
                 <tr key={index}>
-                  <td>{data.state}</td>
-                  <td>{data.nick_name}</td>
+                  <td>{data.tv?.state.input || data.light?.state?.power || data.settings?.button}</td>
+                  <td>{data.nickname}</td>
                   <td>{data.type}</td>
-                  <td>{data.model}</td>
-                  <td>{data.manufacture}</td>
-                  <td>{data.country}</td>
+                  <td>{data.model?.name}</td>
+                  <td>{data.model?.manufacturer}</td>
+                  <td>{data.model?.country}</td>
                 </tr>
                 )
             })

@@ -5,12 +5,20 @@ import Devices from './Devices';
 import Appliances from './Appliances';
 import Events from './Events';
 import * as NatureRemo from 'nature-remo';
-import { IDeviceWithEvents } from 'nature-remo';
+import { IAppliance, IDeviceWithEvents } from 'nature-remo';
 
 declare module "nature-remo" {
   interface IDevice {
     mac_address: string
     serial_number: string
+  }
+
+  interface IAppliance {
+    series?: string
+  }
+
+  interface IModel {
+    country?: string
   }
 }
 
@@ -19,32 +27,32 @@ const namePlateData = {
   name: "sample remo"
 }
 
-const appliance_list = [
-  {
-    state: "t",
-    nick_name: 'テレビ',
-    type: 'TV',
-    model: 'Sharp',
-    manufacture: 'sharp',
-    country: 'JA',
-  },
-  {
-    state: "t",
-    nick_name: 'テレビ',
-    type: 'TV',
-    model: 'Sharp',
-    manufacture: 'sharp',
-    country: 'US',
-  },
-  {
-    state: "t",
-    nick_name: 'テレビ',
-    type: 'TV',
-    model: 'Sharp',
-    manufacture: 'sharp',
-    country: 'CN',
-  }
-];
+// const appliance_list = [
+//   {
+//     state: "t",
+//     nick_name: 'テレビ',
+//     type: 'TV',
+//     model: 'Sharp',
+//     manufacture: 'sharp',
+//     country: 'JA',
+//   },
+//   {
+//     state: "t",
+//     nick_name: 'テレビ',
+//     type: 'TV',
+//     model: 'Sharp',
+//     manufacture: 'sharp',
+//     country: 'US',
+//   },
+//   {
+//     state: "t",
+//     nick_name: 'テレビ',
+//     type: 'TV',
+//     model: 'Sharp',
+//     manufacture: 'sharp',
+//     country: 'CN',
+//   }
+// ];
 
 const event_list = [
   {
@@ -70,13 +78,24 @@ const event_list = [
 ]
 
 function App() {
-  const [devices, setDevices] = useState<Array<IDeviceWithEvents>>([]);
+  const [devices, setDevices]       = useState<Array<IDeviceWithEvents>>([]);
+  const [appliances, setAppliances] = useState<Array<IAppliance>>([]);
 
   useEffect(() => {
     const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
     (async () => {
-    client.getDevices().then((devices) => {
-      setDevices(devices);
+    client.getDevices().then((d) => {
+      setDevices(d);
+    })
+    })();
+  }, [])
+
+  useEffect(() => {
+    const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
+    (async () => {
+    client.getAppliances().then((a) => {
+      console.log(a);
+      setAppliances(a);
     })
     })();
   }, [])
@@ -85,7 +104,7 @@ function App() {
     <div className="App">
       <NamePlate data={namePlateData}/>
       <Devices data={devices}/>
-      <Appliances data={appliance_list}/>
+      <Appliances data={appliances}/>
       <Events data={event_list}/>
     </div>
   );
