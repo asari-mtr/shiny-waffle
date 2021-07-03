@@ -27,33 +27,6 @@ const namePlateData = {
   name: "sample remo"
 }
 
-// const appliance_list = [
-//   {
-//     state: "t",
-//     nick_name: 'テレビ',
-//     type: 'TV',
-//     model: 'Sharp',
-//     manufacture: 'sharp',
-//     country: 'JA',
-//   },
-//   {
-//     state: "t",
-//     nick_name: 'テレビ',
-//     type: 'TV',
-//     model: 'Sharp',
-//     manufacture: 'sharp',
-//     country: 'US',
-//   },
-//   {
-//     state: "t",
-//     nick_name: 'テレビ',
-//     type: 'TV',
-//     model: 'Sharp',
-//     manufacture: 'sharp',
-//     country: 'CN',
-//   }
-// ];
-
 const event_list = [
   {
     type: "te",
