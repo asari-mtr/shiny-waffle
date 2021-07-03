@@ -10,6 +10,7 @@ function Appliances(props: Props) {
         <table>
         <thead>
           <tr>
+            <th>Device</th>
             <th>State</th>
             <th>NickName</th>
             <th>Type</th>
@@ -23,6 +24,7 @@ function Appliances(props: Props) {
             props.data.map((data, index) => {
               return (
                 <tr key={index}>
+                  <td>{data.device.name}</td>
                   <td>{data.tv?.state.input || data.light?.state?.power || data.settings?.button}</td>
                   <td>{data.nickname}</td>
                   <td>{data.type}</td>
