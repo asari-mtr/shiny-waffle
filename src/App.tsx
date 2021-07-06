@@ -15,8 +15,7 @@ declare module "nature-remo" {
   }
 
   interface IAppliance {
-    series?: string;
-    smart_meter: ISmartMeter;
+    smart_meter?: ISmartMeter;
   }
 
   interface ISmartMeter {
@@ -32,6 +31,7 @@ declare module "nature-remo" {
 
   interface IModel {
     country?: string
+    series?: string;
   }
 }
 

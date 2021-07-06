@@ -16,7 +16,11 @@ function SmartMeters(props: Props) {
         <tbody>
           {
             props.data.map((data, index) => {
-              const properties = data.smart_meter.echonetlite_properties;
+              const smart_meter = data.smart_meter;
+              if (!smart_meter) {
+                return undefined;
+              }
+              const properties = smart_meter.echonetlite_properties;
               const powers = properties.filter((item) => { return item.epc === 231; });
               return powers.map((power, i) => {
                 return (<tr key={index * 10 + i}><td>{Number(power.val).toFixed()} w</td></tr>);
