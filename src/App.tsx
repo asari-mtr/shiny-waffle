@@ -5,7 +5,7 @@ import Devices from './Devices';
 import Appliances from './Appliances';
 import Events from './Events';
 import * as NatureRemo from 'nature-remo';
-import { IAppliance, IDeviceWithEvents } from 'nature-remo';
+import { IAppliance, IDeviceWithEvents, IUser } from 'nature-remo';
 import SmartMeters from './SmartMeters';
 
 declare module "nature-remo" {
@@ -35,16 +35,12 @@ declare module "nature-remo" {
   }
 }
 
-const namePlateData = {
-  uuid: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  name: "sample remo"
-}
-
 function App() {
   const [devices, setDevices]       = useState<Array<IDeviceWithEvents>>([]);
   const [appliances, setAppliances] = useState<Array<IAppliance>>([]);
   const [smartMeters, setSmartMeters] = useState<Array<IAppliance>>([]);
   const [events, setEvents] = useState<Array<IDeviceWithEvents>>([]);
+  const [user, setUser] = useState<IUser>({ id: '', nickname: '' });
 
   useEffect(() => {
     const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
@@ -67,9 +63,18 @@ function App() {
     })();
   }, [])
 
+  useEffect(() => {
+    const client = new NatureRemo.Cloud(process.env.REACT_APP_NATURE_REMO_CLOUD_API_TOKEN);
+    (async () => {
+    client.getUser().then((a) => {
+      setUser(a);
+    })
+    })();
+  }, [])
+
   return (
     <div className="App">
-      <NamePlate data={namePlateData}/>
+      <NamePlate data={user}/>
       <Devices data={devices}/>
       <Appliances data={appliances}/>
       <SmartMeters data={smartMeters}/>
